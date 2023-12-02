@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+prev_mtime=0
+while true; do
+	sleep 0.1
+	script="$(ls -1 -rt | tail -n 1)"
+	[[ -x "$script" ]] || continue
+	mtime="$(stat -c %Y "$script")"
+	((mtime==prev_mtime)) && continue
+	clear
+	#echo "[$(now 2>/dev/null)] $script"
+	echo "[$(date)] $script"
+	"./$script"
+	prev_mtime="$mtime"
+done
