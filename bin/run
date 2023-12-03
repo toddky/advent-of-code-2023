@@ -4,7 +4,11 @@ while true; do
 	sleep 0.1
 	script="$(ls -1 -rt | tail -n 1)"
 	[[ -x "$script" ]] || continue
-	mtime="$(stat -c %Y "$script")"
+	if [[ "$OSTYPE" =~ .*darwin.* ]]; then
+		mtime="$(stat -f %m "$script")"
+	else
+		mtime="$(stat -c %Y "$script")"
+	fi
 	((mtime==prev_mtime)) && continue
 	clear
 	#echo "[$(now 2>/dev/null)] $script"
