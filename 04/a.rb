@@ -9,6 +9,7 @@ class String
 	def i(); self.to_i; end
 	# Regex
 	def d?(); self =~ /^\d+$/; end
+	def numbers(); self.scan(/\d+/).to_i; end
 	def m(regex, n)
 		m = regex.match(self)
 		return nil if m.nil? or not m[n]
@@ -56,17 +57,8 @@ lines = File.readlines(file)
 
 sum = 0
 lines.eachi do |line, i|
-	line = line.sub(/Card +\d+: /,'').chomp
-	want, have = line.split('|')
-
-	want = want.scan(/\d+/).to_i
-	have = have.scan(/\d+/).to_i
-
-	winning = 0
-
-	have.each do |h|
-		winning += 1 if want.include? h
-	end
+	want, have = line.sub(/Card +\d+: /,'').chomp.split('|')
+	winning = (want.numbers & have.numbers).size
 	next if winning == 0
 	#puts (2**(winning-1)).s.yellow
 	sum += (2**(winning-1))
