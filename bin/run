@@ -10,9 +10,6 @@ while true; do
 		mtime="$(stat -c %Y "$script")"
 	fi
 	((mtime==prev_mtime)) && continue
-	clear
-	#echo "[$(now 2>/dev/null)] $script"
-	echo "[$(date)] $script"
-	"./$script"
+	run-once "$script"
 	prev_mtime="$mtime"
 done

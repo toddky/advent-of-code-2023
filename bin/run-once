@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+script="$1"
+width="$(tput cols)"
+height="$(tput lines)"
+
+echo ' '
+clear
+printf "\e[37;44;1m"
+printf "%0.s " $(seq 1 "$width")
+printf "\r"
+printf "[$(date)] $script\e[0m\n"
+
+"./$script"
+#result="$("./$script" 2>&1)"
+#echo "$result"
+
+exit
+
+result="$("./$script" 2>&1)"
+
+# Copy the last line
+#echo "$result" | tail -n 1 | noansi | copy-osc52
+
+echo "$result"; exit
+tail -n 1 <<<"$result" | noansi | copy-osc52
+exit
+# REVISIT: Do this other fancy stuff
+
+lines="$(wc -l <<<"$result")"
+if ((lines<height-1)); then
+	echo "$result"
+	exit
+fi
+
+half="$((height/2-2))"
+head -n "$half" <<<"$result" | cut -c "1-$width"
+printf "\e[31;1m...snip...\e[0m\n"
+tail -n "$half" <<<"$result" | cut -c "1-$width"
+
