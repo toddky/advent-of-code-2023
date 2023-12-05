@@ -37,6 +37,7 @@ class Array
 	def to_i(); self.map(&:to_i); end
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
+	def chunks(size); self.each_slice(size).to_a; end
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end
 	# Reduce
