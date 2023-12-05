@@ -8,7 +8,7 @@ clear
 printf "\e[37;44;1m"
 printf "%0.s " $(seq 1 "$width")
 printf "\r"
-printf "[$(date)] $script\e[0m\n"
+printf "[$(date +'%Y-%m-%d %T')] $script\e[0m\n"
 
 "./$script"
 #result="$("./$script" 2>&1)"
