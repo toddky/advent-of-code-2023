@@ -64,7 +64,8 @@ def p(string, *inputs)
 	else
 		string = string.inspect
 	end
-	puts "#{from} #{string} #{inputs.map(&:inspect).join(' ')}"
+	inputs = inputs.map(&:inspect).map { |str| str.size <= 2 ? str : str[0].red + str[1..-2] + str[-1].red }
+	puts "#{from} #{string} #{inputs.join(' ')}"
 end
 $DEBUG = true
 

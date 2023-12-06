@@ -36,15 +36,13 @@ def convert(map, number)
 end
 
 order.each do |item|
-	puts item.yellow
 	new_seeds = []
-	p map[item]
+	#p item, map[item]
 	seeds.each do |seed|
 		new_seeds.append(convert(map[item], seed))
 	end
 	seeds = new_seeds
-	puts seeds.join(',').green
 end
-p seeds.sort
-p seeds.min
+puts seeds.min.s.bold.yellow
+puts 324724204.s.bold.green
 
