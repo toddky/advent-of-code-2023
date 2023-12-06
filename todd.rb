@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 # vim: ft=ruby noet ts=4 sw=0 sts
 
+# Examples:
+# https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
+
 class Integer
 	def s(); self.to_s(); end
 	def sign()
@@ -17,6 +20,8 @@ class String
 	# Regex
 	def d?(); self =~ /^\d+$/; end
 	def numbers(); self.scan(/\d+/).to_i; end
+	def nums(); self.scan(/\d+/).to_i; end
+	def digits(); self.scan(/\d/).to_i; end
 	def m(regex, n)
 		m = regex.match(self)
 		return nil if m.nil? or not m[n]
@@ -39,9 +44,15 @@ class String
 end
 
 class Array
+	# To
+	def i(); self.map(&:to_i); end
+	def s(); self.map(&:to_s); end
 	def to_i(); self.map(&:to_i); end
+	def to_s(); self.map(&:to_s); end
+	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
+	def mjoin(); self.map(&:join); end
 	def chunks(size); self.each_slice(size).to_a; end
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end
