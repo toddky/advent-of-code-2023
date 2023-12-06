@@ -55,3 +55,16 @@ class Array
 	end
 end
 
+def p(string, *inputs)
+	return unless $DEBUG
+	file, line, _ = caller_locations.first.to_s.split(':')
+	from = "[#{File.basename(file)}:#{line}]".ansi('38;5;8')
+	if inputs.size > 0 then
+		string = string.to_s.green
+	else
+		string = string.inspect
+	end
+	puts "#{from} #{string} #{inputs.map(&:inspect).join(' ')}"
+end
+$DEBUG = true
+
