@@ -3,6 +3,11 @@
 
 class Integer
 	def s(); self.to_s(); end
+	def sign()
+		return -1 if self < 0
+		return  1 if self > 0
+		return 0
+	end
 end
 
 class String
@@ -64,7 +69,8 @@ def p(string, *inputs)
 	else
 		string = string.inspect
 	end
-	inputs = inputs.map(&:inspect).map { |str| str.size <= 2 ? str : str[0].red + str[1..-2] + str[-1].red }
+	inputs.map!(&:inspect)
+	inputs.map! { |str| str.size <= 2 ? str : str[0].bold.red + str[1..-2] + str[-1].bold.red }
 	puts "#{from} #{string} #{inputs.join(' ')}"
 end
 $DEBUG = true
