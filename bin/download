@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+top="$(git rev-parse --show-toplevel)" || exit $?
+session_txt="$top/.session.txt"
+session="$(cat "$session_txt")"
+
+year="$1"
+day="$2"
+url="https://adventofcode.com/${year:?}/day/${day:?}/input"
+
+echo curl "$url" --cookie "session=$session"
+
