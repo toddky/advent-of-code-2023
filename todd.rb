@@ -17,6 +17,9 @@ class String
 	def i(); self.to_i; end
 	# File
 	def readlines(); File.readlines(self).map(&:chomp); end
+	# Array
+	def splits(); self.split(' '); end
+	def sort(); self.split('').sort.join(''); end
 	# Regex
 	def d?(); self =~ /^\d+$/; end
 	def numbers(); self.scan(/\d+/).to_i; end
