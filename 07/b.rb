@@ -6,23 +6,10 @@ file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
 hands = file.readlines.map(&:splits)
 
-def vv(a)
-	return a.to_i unless a.to_i == 0
-	return 10 if a == 'T'
-	return  1 if a == 'J'
-	return 12 if a == 'Q'
-	return 13 if a == 'K'
-	return 14 if a == 'A'
-	puts a
-	puts 'FAIL'.red
-	exit 1
-end
-
-def value(a)
-	a = a.gsub('J', '')
+def rank(a)
+	a = a.sort.gsub('J', '')
 	j = 5 - a.size
-	return 6 if j == 5
-	return 6 if j == 4
+	return 6 if j == 5 or j == 4
 	# 5
 	if a =~ /(.)\1\1\1\1/ then
 		return 6
@@ -59,24 +46,18 @@ def value(a)
 	return 0
 end
 
-def compare(a, b)
-	va = value(a.sort)
-	vb = value(b.sort)
-	return va <=> vb unless va == vb
-	a.size.times do |i|
-		va = vv(a[i])
-		vb = vv(b[i])
-		return va <=> vb unless va == vb
-	end
-	return 0
+def value(a)
+	order = 'J' + (2..9).join + 'TQKA'
+	v = a.chars.map{|n| order.index(n)}.map{|c| c.rjust(2)}.join.i
+	v += 10**10 * rank(a)
+	return v
 end
 
 sum = 0
-hands.sort{|a,b| compare(a[0],b[0])}.eachi do |hand, i|
+hands.sort_by{|n| value(n[0])}.eachi do |hand, i|
 	#p 'hand', i+1, hand[0], hand[1].i
 	sum += (hand[1].i * (i+1))
 end
 puts sum.s.bold.yellow
 puts 250087440.s.bold.green
-
 

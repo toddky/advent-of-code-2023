@@ -11,6 +11,7 @@ class Integer
 		return  1 if self > 0
 		return 0
 	end
+	def rjust(n); self.s.rjust(n,'0'); end
 end
 
 class String
@@ -72,6 +73,11 @@ class Array
 		right += 1 while right < self.size and self[right] =~ re
 		return self[(left+1)..(right-1)]
 	end
+end
+
+class Range
+	def a(); self.to_a; end
+	def join(c=''); self.to_a.join(c); end
 end
 
 def p(string, *inputs)
