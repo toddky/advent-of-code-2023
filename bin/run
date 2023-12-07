@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
+top="$(git rev-parse --show-toplevel)" || exit $?
 prev_mtime=0
 while true; do
 	sleep 0.1
-	script="$(ls -1 -rt | tail -n 1)"
+	latest="$(ls -1 -rt "$top/todd.rb" * | tail -n 1)"
+	[[ -x "$latest" ]] && script="$latest"
 	[[ -x "$script" ]] || continue
 	if [[ "$OSTYPE" =~ .*darwin.* ]]; then
-		mtime="$(stat -f %m "$script")"
+		mtime="$(stat -f %m "$latest")"
 	else
-		mtime="$(stat -c %Y "$script")"
+		mtime="$(stat -c %Y "$latest")"
 	fi
 	((mtime==prev_mtime)) && continue
 	run-once "$script"
