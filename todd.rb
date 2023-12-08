@@ -12,6 +12,7 @@ class Integer
 		return  1 if self > 0
 		return 0
 	end
+	def inc(n=1); self.set(n+self); end
 	def rjust(n); self.s.rjust(n,'0'); end
 end
 
@@ -20,7 +21,8 @@ class String
 	# File
 	def readlines(); File.readlines(self).map(&:chomp); end
 	# Array
-	def splits(); self.split(' '); end
+	def words(); self.split(/\s+/); end
+	def splits(); self.split(/\s+/); end
 	def sort(); self.split('').sort.join(''); end
 	# Regex
 	def d?(); self =~ /^\d+$/; end
@@ -61,11 +63,27 @@ class Array
 	def chunks(size); self.each_slice(size).to_a; end
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end
+	def split(by)
+		a = []
+		b = []
+		self.each do |v|
+			if v == by
+				a.append(b) unless b.empty?
+				b = []
+				next
+			end
+			b.append(v)
+		end
+		a.append(b) unless b.empty?
+		return a
+	end
 	# Reduce
 	def sum(); self.compact.to_i.inject(:+); end
 	def product(); self.compact.to_i.inject(:*); end
 	def max(); self.compact.to_i.reduce { |a,b| a>b ? a : b }; end
 	def min(); self.compact.to_i.reduce { |a,b| a<b ? a : b }; end
+	def lcm(); self.i.reduce(1,:lcm); end
+	def gcd(); self.i.reduce(1,:gcd); end
 	# Regex
 	def match_lr(i, re)
 		return nil if not self[i] =~ re
