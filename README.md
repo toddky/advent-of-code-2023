@@ -9,3 +9,8 @@
     - [Custom CSS](https://gist.github.com/mcpower/e224e66699a3bfe774e9eee2fe43bb8a) to make website more readable.
     - [User script to copy code blocks.](https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661?permalink_comment_id=4392058#gistcomment-4392058)
 
+## Examples
+
+- Start script
+    - [antooro (Python)][https://github.com/antooro/advent-of-code-2019/blob/0f730756c2ee010ba062bf58879bae503ac41e7c/startDay.py]
+
