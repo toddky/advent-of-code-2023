@@ -2,8 +2,9 @@
 # vim: ft=ruby noet ts=4 sw=0 sts
 require_relative '../todd'
 
-file = ARGV[0] || 'input.txt'
-#file = ARGV[0] || 'example.txt'
+#file = ARGV[0] || 'input.txt'
+file = ARGV[0] || 'example.txt'
+lines = file.readlines
 words = file.readlines.map(&:words)
 numbers = file.readlines.map(&:numbers)
 chars = file.readlines.map(&:chars)
