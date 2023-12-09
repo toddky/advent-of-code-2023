@@ -26,8 +26,9 @@ def dist(start)
 	return ans
 end
 
-p start.map{|s| dist(s)}
-ans = start.map{|s| dist(s)}.lcm
+ans = start.map{|s| dist(s)}
+p ans
+ans = ans.lcm
 puts ans.s.bold.yellow
 puts 22289513667691.s.bold.green
 
