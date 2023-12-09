@@ -117,3 +117,9 @@ def p(string, *inputs)
 end
 $DEBUG = true
 
+def e(string)
+	file, line, _ = caller_locations.first.to_s.split(':')
+	from = "[#{File.basename(file)}:#{line}]".ansi('38;5;8')
+	puts "#{from} #{"ERROR:".bold.red} #{string.to_s}"
+end
+
