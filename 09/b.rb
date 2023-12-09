@@ -7,13 +7,8 @@ file = ARGV[0] || 'input.txt'
 numbers = file.readlines.map(&:numbers)
 
 def ext(n)
-	diff = []
-	prev = n[0]
-	n[1..-1].each do |i|
-		diff.append(i - prev)
-		prev = i
-	end
-	return n[0] if diff.all? 0
+	return 0 if n.all? 0
+	diff = n[1..-1].mapi{|x,i| x-n[i]}
 	return n[0] - ext(diff)
 end
 
