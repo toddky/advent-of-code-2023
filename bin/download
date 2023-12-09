@@ -1,11 +1,48 @@
 #!/usr/bin/env bash
+# https://www.reddit.com/r/adventofcode/comments/a2vonl/how_to_download_inputs_with_a_script/
+
+# Get session:
+# - Open Chrome
+# - Go to https://adventofcode.com/2023/day/1/input
+# - Command-Shift-C/Control-Shnift-C to open Element Mode
+# - Click Network tab
+# - Refresh Page
+# - Click Input
+# - Click Cookies
+# - Copy Session value
+
 top="$(git rev-parse --show-toplevel)" || exit $?
 session_txt="$top/.session.txt"
-session="$(cat "$session_txt")"
+session="$(cat "$session_txt")" || exit $?
 
-year="$1"
-day="$2"
-url="https://adventofcode.com/${year:?}/day/${day:?}/input"
+day="$((10#${1}))"
+year="${2:-$(date +%Y)}"
+
+if ((day==0)); then
+	echo "Bay day" 1>&2
+	exit 1
+fi
+
+url="https://adventofcode.com/${year}/day/${day}/input"
+
+padded_day="$(printf '%02d' "$day")"
+day_dir="$top/$padded_day"
+mkdir -p "$day_dir"
+input="$day_dir/input.txt"
+if [[ -f "$input" ]]; then
+	echo "ERROR: File '$input' already exists!" 1>&2
+	exit 1
+fi
 
 echo curl "$url" --cookie "session=$session"
+curl "$url" --cookie "session=$session" > "$input"
+RETVAL=$?
+if ((RETVAL)); then
+	cat "$input" 1>&2
+	rm -f "$input"
+	echo "RETVAL: $?" 1>&2
+	exit $RETVAL
+fi
+echo "RETVAL: $?" 1>&2
+exit 0
 
