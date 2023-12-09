@@ -54,8 +54,10 @@ class Array
 	# To
 	def i(); self.map(&:to_i); end
 	def s(); self.map(&:to_s); end
+	def h(); Hash[self]; end
 	def to_i(); self.map(&:to_i); end
 	def to_s(); self.map(&:to_s); end
+	def to_h(); Hash[self]; end
 	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
@@ -63,6 +65,7 @@ class Array
 	def chunks(size); self.each_slice(size).to_a; end
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end
+	def split_at(n); [self[0...n], self[n..-1]]; end
 	def split(by)
 		a = []
 		b = []

@@ -9,13 +9,7 @@ ans = 0
 
 dirs, lines = file.readlines.split('')
 dirs = dirs.first
-
-map = {}
-lines.each do |l|
-	a, b, c = l.scan(/(\w\w\w)/).flatten
-	map[a] = [b, c]
-end
-
+map = lines.map{|l| l.scan(/(\w\w\w)/).flatten}.map{|a| [a[0], a[1..2]]}.h
 
 start = 'AAA'
 while start != 'ZZZ'

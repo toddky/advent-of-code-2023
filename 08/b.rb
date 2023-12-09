@@ -3,19 +3,12 @@
 require_relative '../todd'
 
 file = ARGV[0] || 'input.txt'
-#file = ARGV[0] || 'example.txt'
 #file = ARGV[0] || '2.txt'
-ans = 0
 
-lines = file.readlines
-$dirs = lines[0]
-lines.shift(2)
+$dirs, lines = file.readlines.split('')
+$dirs = $dirs.first
 
-$map = {}
-lines.each do |l|
-	a, b, c = l.scan(/(\w\w\w)/).flatten
-	$map[a] = [b, c]
-end
+$map = lines.map{|l| l.scan(/(\w\w\w)/).flatten}.map{|a| [a[0], a[1..2]]}.h
 
 start = $map.keys.select { |k| k[2] == 'A' }
 p $dirs.length
