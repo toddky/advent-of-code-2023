@@ -25,9 +25,9 @@ class String
 	def splits(); self.split(/\s+/); end
 	def sort(); self.split('').sort.join(''); end
 	# Regex
-	def d?(); self =~ /^\d+$/; end
-	def numbers(); self.scan(/\d+/).to_i; end
-	def nums(); self.scan(/\d+/).to_i; end
+	def d?(); self =~ /^-?\d+$/; end
+	def numbers(); self.scan(/-?\d+/).to_i; end
+	def nums(); self.scan(/-?\d+/).to_i; end
 	def digits(); self.scan(/\d/).to_i; end
 	def m(regex, n)
 		m = regex.match(self)
