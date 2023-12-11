@@ -58,11 +58,15 @@ class Array
 	def to_i(); self.map(&:to_i); end
 	def to_s(); self.map(&:to_s); end
 	def to_h(); Hash[self]; end
+	def abs(); self.to_i.map(&:abs); end
 	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
 	def mjoin(); self.map(&:join); end
 	def chunks(size); self.each_slice(size).to_a; end
+	# grid.xy { |row,col| run(row,col) }
+	def each_xy(); self.eachi{|_,x| _.eachi{|_,y| yield x, y }} end
+
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end
 	def split_at(n); [self[0...n], self[n..-1]]; end
@@ -85,8 +89,8 @@ class Array
 	def product(); self.compact.to_i.inject(:*); end
 	def max(); self.compact.to_i.reduce { |a,b| a>b ? a : b }; end
 	def min(); self.compact.to_i.reduce { |a,b| a<b ? a : b }; end
-	def lcm(); self.i.reduce(1,:lcm); end
-	def gcd(); self.i.reduce(1,:gcd); end
+	def lcm(); self.to_i.reduce(1,:lcm); end
+	def gcd(); self.to_i.reduce(1,:gcd); end
 	# Regex
 	def match_lr(i, re)
 		return nil if not self[i] =~ re
