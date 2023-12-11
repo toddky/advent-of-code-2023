@@ -3,26 +3,15 @@
 require_relative '../todd'
 
 file = ARGV[0] || 'input.txt'
-#file = ARGV[0] || 'example.txt'
-#file = ARGV[0] || '2.txt'
+#file = ARGV[0] || '1a.txt'
+#file = ARGV[0] || '1b.txt'
+
 lines = file.readlines
-words = file.readlines.map(&:words)
-numbers = file.readlines.map(&:numbers)
-numbers = file.readlines.map(&:numbers).map(&:abs)
-chars = file.readlines.map(&:chars)
-ans = 0
-
-lines.mapi { |line, i| line }
-lines.eachi do |line, i|
-end
-p lines
-
 puts lines
-
 
 row = lines.index{|line| line.index('S') }
 col = lines[row].index('S')
-p [row, col]
+p 'start', [row, col]
 
 $offset = {
 	"N" => [-1,0],
@@ -30,7 +19,6 @@ $offset = {
 	"S" => [1,0],
 	"W" => [0,-1],
 }
-p $offset
 
 $dir = {
 	'|' => {'N'=>'N','S'=>'S'},
@@ -55,7 +43,7 @@ def travel(row,col,d)
 		row += $offset[d][0]
 		col += $offset[d][1]
 		here = $grid[row][col]
-		p d, here
+		#p d, here
 		dist += 1
 	end
 	return dist
@@ -69,9 +57,6 @@ end
 
 ans = max / 2
 
-
-
-
 puts ans.s.bold.yellow
-puts 0.s.bold.green
+puts 6903.s.bold.green
 
