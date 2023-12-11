@@ -1,6 +1,7 @@
 
 ## Tips
 
+- [Advent of Code Charts](https://chromewebstore.google.com/detail/advent-of-code-charts/ipbomkmbokofodhhjpipflmdplipblbe) Chrome plugin
 - [Going Fast](https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/)
 - [Go Fast](https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661)
     - Language matters. Pick a concise scripting language.
@@ -13,4 +14,11 @@
 
 - Start script
     - [antooro (Python)][https://github.com/antooro/advent-of-code-2019/blob/0f730756c2ee010ba062bf58879bae503ac41e7c/startDay.py]
+
+## Lessons
+
+- **Check your inputs.** I accidentally parsed out all of the negative signs for [2023-09](https://adventofcode.com/2023/day/9).
+- TODO: Implement grid commands for directions like North, South, East, West, etc.
+- **Get good.**. Need to get beter at coming up with stuff on the fly, e.g.
+    - Subtracting an array from itself shifted over one: `n[1..-1].mapi{|x,i| x-n[i]}`
 
