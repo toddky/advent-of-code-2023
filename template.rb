@@ -7,9 +7,14 @@ file = ARGV[0] || 'example.txt'
 lines = file.readlines
 words = file.readlines.map(&:words)
 numbers = file.readlines.map(&:numbers)
+numbers = file.readlines.map(&:numbers).map(&:abs)
 chars = file.readlines.map(&:chars)
 ans = 0
 
+
+lines.mapi { |line, i| line }
+lines.eachi do |line, i|
+end
 
 
 puts ans.s.bold.yellow
