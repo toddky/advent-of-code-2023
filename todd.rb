@@ -63,6 +63,7 @@ class Array
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
 	def mjoin(); self.map(&:join); end
+	def mchars(); self.map(&:chars); end
 	def chunks(size); self.each_slice(size).to_a; end
 	# grid.xy { |row,col| run(row,col) }
 	def each_xy(); self.eachi{|_,x| _.eachi{|_,y| yield x, y }} end
@@ -104,6 +105,10 @@ end
 class Range
 	def a(); self.to_a; end
 	def join(c=''); self.to_a.join(c); end
+end
+
+class Enumerator
+	def a(); self.to_a; end
 end
 
 def p(string, *inputs)

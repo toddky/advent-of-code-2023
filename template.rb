@@ -5,10 +5,11 @@ require_relative '../todd'
 #file = ARGV[0] || 'input.txt'
 file = ARGV[0] || 'example.txt'
 lines = file.readlines
+paragraphs = file.readlines.split('')
 words = file.readlines.map(&:words)
 numbers = file.readlines.map(&:numbers)
 numbers = file.readlines.map(&:numbers).map(&:abs)
-chars = file.readlines.map(&:chars)
+chars = file.readlines.mchars
 ans = 0
 
 
