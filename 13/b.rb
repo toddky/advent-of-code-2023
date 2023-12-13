@@ -4,34 +4,18 @@ require_relative '../todd'
 
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
-lines = file.readlines
-words = file.readlines.map(&:words)
-numbers = file.readlines.map(&:numbers)
-numbers = file.readlines.map(&:numbers).map(&:abs)
-chars = file.readlines.map(&:chars)
+grids = file.readlines.split('')
 ans = 0
 
-grids = lines.slice_when { |a| a.empty? }.to_a.map{|a| a.reject(&:empty?)}
-#p grids
-
-def diff(a, b)
-	c = 0
-	a.eachi do |x,i|
-		c += 1 if x != b[i]
-	end
-	return c
+def diffs(a, b)
+	return a.size.times.a.count{|i| a[i]!=b[i]}
 end
-
-#p diff(["#", ".", "#", "#", "#", "#", "#", "#", "."], ["#", ".", "#", "#", "#", "#", "#", "#", "."])
-#p diff([".", ".", "#", "#", "#", "#", "#", "#", "."], ["#", ".", "#", "#", "#", "#", "#", "#", "."])
-#p diff([".", "#", "#", "#", "#", "#", "#", "#", "."], ["#", ".", "#", "#", "#", "#", "#", "#", "."])
-#exit
 
 def reflect(grid)
 	prev = []
 	#puts grid.map(&:join)
 	grid.eachi do |row, i|
-		if diff(row, prev) > 1
+		if diffs(row, prev) > 1
 			prev = row
 			next
 		end
@@ -43,7 +27,7 @@ def reflect(grid)
 				break
 			end
 			next if grid[i+j] == grid[i-j-1]
-			if not smudge and diff(grid[i+j], grid[i-j-1]) == 1
+			if not smudge and diffs(grid[i+j], grid[i-j-1]) == 1
 				smudge = true
 				next
 			end

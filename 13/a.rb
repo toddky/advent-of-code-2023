@@ -4,10 +4,8 @@ require_relative '../todd'
 
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
-lines = file.readlines
+grids = file.readlines.split('')
 ans = 0
-
-grids = lines.slice_when { |a| a.empty? }.to_a.map{|a| a.reject(&:empty?)}
 
 def reflect(grid)
 	prev = []
