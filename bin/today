@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#TZ=Japan date +%d
+TZ=America/New_York date +%d
