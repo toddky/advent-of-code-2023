@@ -5,5 +5,5 @@ today="$1"
 dir="$top/${today:?}"
 
 [[ -f "$dir/a.rb" ]] || cp "$top/template.rb" "$dir/a.rb"
-touch "$dir/sample.txt"
+touch "$dir/example.txt"
 
