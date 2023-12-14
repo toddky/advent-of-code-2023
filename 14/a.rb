@@ -32,14 +32,13 @@ def north(grid)
 	return west(grid.transpose)
 end
 
-
 grid = chars
-#puts grid.transpose.map(&:join)
-puts grid.map(&:join)
+#puts grid.transpose.mjoin
+#puts grid.mjoin
 
 grid = north(grid)
 puts
-puts grid.map(&:join)
+puts grid.mjoin
 
 grid.each do |row|
 	row.eachi do |r,i|

@@ -5,15 +5,24 @@
 # https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 # https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
 
+require 'digest'
+
+class Object
+	def md5(); Digest::MD5.hexdigest(self.inspect); end
+end
+
 class Integer
-	def s(); self.to_s(); end
+	# String
+	def a(); self.times.to_a; end
+	def s(); self.to_s; end
+	def rjust(n); self.s.rjust(n,'0'); end
+	# Math
+	#def inc(n=1); self.set(n+self); end
 	def sign()
 		return -1 if self < 0
 		return  1 if self > 0
 		return 0
 	end
-	def inc(n=1); self.set(n+self); end
-	def rjust(n); self.s.rjust(n,'0'); end
 end
 
 class String
@@ -62,7 +71,7 @@ class Array
 	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
-	def mjoin(); self.map(&:join); end
+	def mjoin(c=''); self.map{|a| a.join(c)}; end
 	def mchars(); self.map(&:chars); end
 	def chunks(size); self.each_slice(size).to_a; end
 	# grid.xy { |row,col| run(row,col) }

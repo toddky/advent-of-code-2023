@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # vim: ft=ruby noet ts=4 sw=0 sts
 require_relative '../todd'
-require 'digest'
 
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
@@ -46,27 +45,23 @@ def spin(grid)
 	return east(south(west(north(grid))))
 end
 
-def md5(grid)
-	return Digest::MD5.hexdigest(grid.inspect)
-end
-
 grid = chars
 #puts grid.map(&:join)
 
-hits = { md5(grid) => 0 }
+hits = { grid.md5 => 0 }
 max = 0
 min = 0
 times = 1000000000
 times.times.each do |i|
 	#puts i + 1
 	grid = spin(grid)
-	if hits.key? md5(grid)
-		p 'MATCH', i, hits[md5(grid)]
+	if hits.key? grid.md5
+		p 'MATCH', i, hits[grid.md5]
 		max = i
-		min = hits[md5(grid)]
+		min = hits[grid.md5]
 		break
 	else
-		hits[md5(grid)] ||= i + 1
+		hits[grid.md5] ||= i + 1
 	end
 end
 
