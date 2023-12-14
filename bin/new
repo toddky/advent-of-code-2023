@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+top="$(git rev-parse --show-toplevel)" || exit $?
+
+today="$1"
+dir="$top/${today:?}"
+
+[[ -f "$dir/a.rb" ]] || cp "$top/template.rb" "$dir/a.rb"
+touch "$dir/sample.txt"
+
