@@ -70,12 +70,18 @@ class Array
 	def abs(); self.to_i.map(&:abs); end
 	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
-	def mapi(); self.map.with_index { |n,i| yield n, i }; end
-	def mjoin(c=''); self.map{|a| a.join(c)}; end
-	def mchars(); self.map(&:chars); end
-	def chunks(size); self.each_slice(size).to_a; end
+	#def chunks(size); self.each_slice(size).to_a; end
+	def chunks_of(size); self.each_slice(size).to_a; end
 	# grid.xy { |row,col| run(row,col) }
 	def each_xy(); self.eachi{|_,x| _.eachi{|_,y| yield x, y }} end
+	# Map
+	def mapi(); self.map.with_index { |n,i| yield n, i }; end
+	def mchars(); self.map(&:chars); end
+	def mjoin(c=''); self.map{|a| a.join(c)}; end
+	def mreverse(); self.map(&:reverse); end
+	# Rotate
+	def cw(); self.transpose.mreverse; end
+	def ccw(); self.mreverse.transpose; end
 
 	# Check
 	def grid?(); self.map(&:size).uniq.size == 1; end

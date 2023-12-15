@@ -17,13 +17,6 @@ cols = chars.transpose.map { |l| (l.all? '.') ? size : 1 }
 #p cols
 
 galaxies = []
-chars.eachi do |line, i|
-	line.eachi do |c, j|
-		#p [i,j].inspect, c
-		galaxies.append([i,j]) if c == '#'
-	end
-end
-
 ans = 0
 galaxies.eachi do |n,i|
 	others = galaxies[(i+1)..-1]

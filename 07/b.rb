@@ -4,7 +4,7 @@ require_relative '../todd'
 
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
-hands = file.readlines.map(&:splits)
+hands = file.readlines.map(&:words)
 
 def rank(a)
 	a = a.sort.gsub('J', '')

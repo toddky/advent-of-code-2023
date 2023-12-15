@@ -8,7 +8,7 @@ grids = file.readlines.split('')
 ans = 0
 
 def diffs(a, b)
-	return a.size.times.a.count{|i| a[i]!=b[i]}
+	return a.size.a.count{|i| a[i]!=b[i]}
 end
 
 def reflect(grid)
@@ -38,7 +38,7 @@ def reflect(grid)
 end
 
 grids.each do |grid|
-	grid = grid.map { |row| row.chars }
+	grid = grid.map(&:chars)
 	ans += reflect(grid.transpose)
 	ans += 100*reflect(grid)
 end

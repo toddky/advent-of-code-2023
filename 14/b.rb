@@ -5,13 +5,11 @@ require_relative '../todd'
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
 chars = file.readlines.mchars
+rows = chars.size
 ans = 0
 
-rows = chars.size
-
 def west(grid)
-	new_grid = []
-	grid.each do |row|
+	grid.map do |row|
 		new_row = []
 		temp = []
 		row.each do |r|
@@ -24,55 +22,34 @@ def west(grid)
 			temp.append(r)
 		end
 		new_row.append(temp.sort.reverse)
-		new_grid.append(new_row.flatten)
+		new_row.flatten
 	end
-	return new_grid
 end
-
-def north(grid)
-	return west(grid.transpose).transpose
-end
-
-def east(grid)
-	return west(grid.map(&:reverse)).map(&:reverse)
-end
-
-def south(grid)
-	return west(grid.transpose.map(&:reverse)).map(&:reverse).transpose
-end
-
-def spin(grid)
-	return east(south(west(north(grid))))
-end
+def north(grid); return west(grid.ccw).cw; end
+def east(grid);  return west(grid.mreverse).mreverse; end
+def south(grid); return west(grid.cw).ccw; end
+def spin(grid);  return east(south(west(north(grid)))); end
 
 grid = chars
 #puts grid.map(&:join)
 
-hits = { grid.md5 => 0 }
-max = 0
-min = 0
+seen = { grid => 0 }
+value = 0
 times = 1000000000
 times.times.each do |i|
 	#puts i + 1
 	grid = spin(grid)
-	if hits.key? grid.md5
-		p 'MATCH', i, hits[grid.md5]
+	if seen.key? grid
+		p 'MATCH', i, seen[grid]
 		max = i
-		min = hits[grid.md5]
+		min = seen[grid]
+		value = (times-min) % (max-min+1) + min
 		break
-	else
-		hits[grid.md5] ||= i + 1
 	end
+	seen[grid] ||= i + 1
 end
 
-magic = (1000000000-min) % (max-min+1) + min
-
-grid = chars
-magic.times.each do |i|
-	grid = spin(grid)
-end
-
-#puts
+grid = seen.key(value)
 #puts grid.map(&:join)
 
 grid.eachi do |row,i|

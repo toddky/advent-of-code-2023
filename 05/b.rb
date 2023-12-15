@@ -6,7 +6,7 @@ file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
 lines = file.readlines
 seeds = lines[0].split(':')[1].numbers
-seeds = seeds.chunks(2).map { |a,b| [a,a+b-1] }
+seeds = seeds.chunks_of(2).map { |a,b| [a,a+b-1] }
 lines.shift(2)
 
 map = {}

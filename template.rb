@@ -10,6 +10,7 @@ words = file.readlines.map(&:words)
 numbers = file.readlines.map(&:numbers)
 numbers = file.readlines.map(&:numbers).map(&:abs)
 chars = file.readlines.mchars
+grid = file.readlines.mchars
 rows = lines.size
 ans = 0
 
