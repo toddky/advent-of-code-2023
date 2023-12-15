@@ -27,6 +27,7 @@ end
 
 class String
 	def i(); self.to_i; end
+	def ascii(); self.codepoints; end
 	# File
 	def readlines(); File.readlines(self).map(&:chomp); end
 	# Array
