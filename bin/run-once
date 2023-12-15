@@ -10,7 +10,11 @@ printf "%0.s " $(seq 1 "$width")
 printf "\r"
 printf "[$(date +'%Y-%m-%d %T')] $script\e[0m\n"
 
+start_ms="$(ruby -e "p (Time.now.to_f*1000).to_i")"
 "./$script"
+end_ms="$(ruby -e "p (Time.now.to_f*1000).to_i")"
+echo "Finished in $((end_ms-start_ms)) ms"
+
 #result="$("./$script" 2>&1)"
 #echo "$result"
 
