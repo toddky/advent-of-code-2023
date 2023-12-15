@@ -127,6 +127,9 @@ class Enumerator
 	def a(); self.to_a; end
 end
 
+# ==============================================================================
+# FUNCTIONS
+# ==============================================================================
 def p(string, *inputs)
 	return unless $DEBUG
 	file, line, _ = caller_locations.first.to_s.split(':')
@@ -146,5 +149,16 @@ def e(string)
 	file, line, _ = caller_locations.first.to_s.split(':')
 	from = "[#{File.basename(file)}:#{line}]".ansi('38;5;8')
 	puts "#{from} #{"ERROR:".bold.red} #{string.to_s}"
+end
+
+def memoize(name, *args)
+	@cache ||= {}
+	@cache[name] ||= {}
+	orig_name = "orig_#{name}".to_sym
+	eval "alias #{orig_name} #{name}"
+	send(:define_method, name) do |*args|
+		return @cache[name][*args] if @cache[name][*args]
+		@cache[name][*args] ||= method(orig_name).call *args
+	end
 end
 
