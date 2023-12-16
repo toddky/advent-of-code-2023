@@ -5,10 +5,16 @@
 # https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 # https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
 
+require 'base64'
 require 'digest'
 
 class Object
 	def md5(); Digest::MD5.hexdigest(self.inspect); end
+	def base64(); Base64.encode64("#{self.inspect}\n"); end
+	def clipboard()
+		print "\e]52;c;#{self.base64}\a"
+		puts "Copied #{self.inspect.bold.yellow} to clipboard"
+	end
 end
 
 class Integer
@@ -31,6 +37,7 @@ class String
 	# File
 	def readlines(); File.readlines(self).map(&:chomp); end
 	# Array
+	def csv(); self.split(/\s*,\s*/); end
 	def words(); self.split(/\s+/); end
 	def splits(); self.split(/\s+/); end
 	def sort(); self.split('').sort.join(''); end
