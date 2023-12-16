@@ -23,4 +23,5 @@ end
 
 puts ans.s.bold.yellow
 puts 0.s.bold.green
+ans.clipboard
 
