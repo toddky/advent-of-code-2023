@@ -61,6 +61,10 @@ class String
 end
 
 class Array
+	def clean(); self.flatten.compact; end
+	# New
+	def Array.newa(size); Array.new(size) { Array.new }; end
+	def Array.newh(size); Array.new(size) { Hash.new }; end
 	# To
 	def i(); self.map(&:to_i); end
 	def s(); self.map(&:to_s); end
@@ -102,10 +106,10 @@ class Array
 		return a
 	end
 	# Reduce
-	def sum(); self.compact.to_i.inject(:+); end
-	def product(); self.compact.to_i.inject(:*); end
-	def max(); self.compact.to_i.reduce { |a,b| a>b ? a : b }; end
-	def min(); self.compact.to_i.reduce { |a,b| a<b ? a : b }; end
+	def sum(); self.clean.to_i.inject(:+) || 0; end
+	def product(); self.clean.to_i.inject(:*); end
+	def max(); self.clean.to_i.reduce { |a,b| a>b ? a : b }; end
+	def min(); self.clean.to_i.reduce { |a,b| a<b ? a : b }; end
 	def lcm(); self.to_i.reduce(1,:lcm); end
 	def gcd(); self.to_i.reduce(1,:gcd); end
 	# Regex
@@ -116,6 +120,12 @@ class Array
 		right += 1 while right < self.size and self[right] =~ re
 		return self[(left+1)..(right-1)]
 	end
+end
+
+class Hash
+	# New
+	def Hash.newa(); Hash.new { |hash, key| hash[key] = [] }; end
+	def Hash.newh(); Hash.new { |hash, key| hash[key] = {} }; end
 end
 
 class Range

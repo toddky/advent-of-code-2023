@@ -7,13 +7,7 @@ file = ARGV[0] || 'input.txt'
 csv = file.readlines.map{|line| line.split(',')}
 
 def h(str)
-	v = 0
-	str.ascii.each do |c|
-		v += c
-		v *= 17
-		v %= 256
-	end
-	return v
+	str.ascii.reduce(0) { |v,c| v = (v+c) * 17 % 256 }
 end
 #p h('HASH')
 
