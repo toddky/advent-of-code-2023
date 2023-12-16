@@ -10,10 +10,10 @@ require 'digest'
 
 class Object
 	def md5(); Digest::MD5.hexdigest(self.inspect); end
-	def base64(); Base64.encode64("#{self.inspect}\n"); end
+	def base64(); Base64.encode64("#{self}\n"); end
 	def clipboard()
 		print "\e]52;c;#{self.base64}\a"
-		puts "Copied #{self.inspect.bold.yellow} to clipboard"
+		puts "Copied #{self.to_s.bold.yellow} to clipboard"
 	end
 end
 
