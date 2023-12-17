@@ -17,8 +17,9 @@
 
 ## Lessons
 
-- **Check your inputs.** I accidentally parsed out all of the negative signs for [2023-09](https://adventofcode.com/2023/day/9).
+- **Check your inputs.** I accidentally parsed out all of the negative signs for [2023 day 9](https://adventofcode.com/2023/day/9). LCM was good enough for [2023 day 8 part 2](https://adventofcode.com/2023/day/8).
 - TODO: Implement grid commands for directions like North, South, East, West, etc.
 - **Get good.**. Need to get beter at coming up with stuff on the fly, e.g.
     - Subtracting an array from itself shifted over one: `n[1..-1].mapi{|x,i| x-n[i]}`
+- [Encode your logic in a hash](https://github.com/Evgenus/advent-of-code/blob/0f53db49d485d2a9884ac3fee2d86d8e88dbdda8/2023/16/main.py#L12) instead of doing a bunch of if statements.
 
