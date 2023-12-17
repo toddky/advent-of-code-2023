@@ -5,13 +5,11 @@ require_relative '../todd'
 file = ARGV[0] || 'input.txt'
 #file = ARGV[0] || 'example.txt'
 grid = file.readlines.mchars
-$rows = grid.size
-cols = grid[0].size
-ans = 0
+rows, cols = grid.rows, grid.cols
 
 def energy(grid, start)
-
-	beams = [start]
+	rows, cols = grid.rows, grid.cols
+	e = Array.new(rows) { Array.new(cols,0) }
 
 	dirs = {
 		'>' => [0,1],
@@ -20,15 +18,12 @@ def energy(grid, start)
 		'^' => [-1,0],
 	}
 
-	cols = grid[0].size
-
-	e = Array.new($rows) { Array.new(cols,0) }
-
+	beams = [start]
 	while not beams.empty?
 		new_beams = []
 		beams.each do |beam|
 			x,y,dir = beam
-			next if x < 0 or x >= $rows or y < 0 or y >= cols
+			next if x < 0 or x >= rows or y < 0 or y >= cols
 			e[x][y] = 1
 
 			c = grid[x][y]
@@ -87,15 +82,16 @@ def energy(grid, start)
 	return e.map(&:sum).sum
 end
 
-ans = 0
-$rows.a.each do |i|
-	ans = [ans, energy(grid.transpose.transpose, [i,0,'>'])].max
-	ans = [ans, energy(grid.transpose.transpose, [i,cols-1,'<'])].max
+results = []
+rows.times do |i|
+	results.append(energy(grid.mdup, [i,0,'>']))
+	results.append(energy(grid.mdup, [i,cols-1,'<']))
 end
-cols.a.each do |i|
-	ans = [ans, energy(grid.transpose.transpose, [0,i,'v'])].max
-	ans = [ans, energy(grid.transpose.transpose, [$rows-1,i,'^'])].max
+cols.times do |i|
+	results.append(energy(grid.mdup, [0,i,'v']))
+	results.append(energy(grid.mdup, [rows-1,i,'^']))
 end
+ans = results.max
 
 puts ans.s.bold.yellow
 puts 8185.s.bold.green

@@ -12,7 +12,7 @@ numbers = file.readlines.map(&:numbers).map(&:abs)
 chars = file.readlines.mchars
 csv = file.readlines.map{|line| line.split(',')}
 grid = file.readlines.mchars
-rows = lines.size
+rows, cols = grid.rows, grid.cols
 ans = 0
 
 

@@ -72,6 +72,15 @@ class Array
 	# New
 	def Array.newa(size); Array.new(size) { Array.new }; end
 	def Array.newh(size); Array.new(size) { Hash.new }; end
+
+	# Get
+	# Huge performance slowdown for 2023-16b, but it works
+	#def [](n); n.class == Array ? self.at(n[0]).at(n[1]) : self.at(n); end
+	#def get(*n); self.at(n.flatten[0]).at(n.flatten[1]); end
+	def get(n); self.at(n[0]).at(n[1]); end
+	def rows(); self.size; end
+	def cols(); self[0].size; end
+
 	# To
 	def i(); self.map(&:to_i); end
 	def s(); self.map(&:to_s); end
@@ -89,6 +98,7 @@ class Array
 	# Map
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
 	def mchars(); self.map(&:chars); end
+	def mdup(); self.map(&:dup); end
 	def mjoin(c=''); self.map{|a| a.join(c)}; end
 	def mreverse(); self.map(&:reverse); end
 	# Rotate
@@ -119,7 +129,9 @@ class Array
 	def min(); self.clean.to_i.reduce { |a,b| a<b ? a : b }; end
 	def lcm(); self.to_i.reduce(1,:lcm); end
 	def gcd(); self.to_i.reduce(1,:gcd); end
+
 	# Regex
+	# REVISIT: Do I need this?
 	def match_lr(i, re)
 		return nil if not self[i] =~ re
 		left, right = i, i
