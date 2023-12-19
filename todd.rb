@@ -8,6 +8,10 @@
 require 'base64'
 require 'digest'
 
+
+# ==============================================================================
+# DEFAULT
+# ==============================================================================
 class Object
 	def md5(); Digest::MD5.hexdigest(self.inspect); end
 	def base64(); Base64.encode64("#{self}\n"); end
@@ -70,7 +74,7 @@ end
 class Array
 	def clean(); self.flatten.compact; end
 	# New
-	def Array.newa(size); Array.new(size) { Array.new }; end
+	def Array.newa(rows,cols,value=nil); Array.new(rows) { cols.nil? ? Array.new : Array.new(cols, value) }; end
 	def Array.newh(size); Array.new(size) { Hash.new }; end
 
 	# Get
@@ -96,6 +100,7 @@ class Array
 	# grid.xy { |row,col| run(row,col) }
 	def each_xy(); self.eachi{|_,x| _.eachi{|_,y| yield x, y }} end
 	# Map
+	def add(other); self.map.with_index { |n,i| n + other[i] }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
 	def mchars(); self.map(&:chars); end
 	def mdup(); self.map(&:dup); end
@@ -155,6 +160,37 @@ end
 class Enumerator
 	def a(); self.to_a; end
 end
+
+
+# ==============================================================================
+# CUSTOM
+# ==============================================================================
+class Dir
+	N = [-1, 0]
+	S = [ 1, 0]
+	E = [ 0, 1]
+	W = [ 0,-1]
+	DIRS = {
+		'N' => N,
+		'E' => E,
+		'S' => S,
+		'W' => W,
+		'U' => N,
+		'R' => E,
+		'D' => S,
+		'L' => W,
+	}
+	def Dir.U; N; end
+	def Dir.D; S; end
+	def Dir.R; E; end
+	def Dir.L; W; end
+	def Dir.N; N; end
+	def Dir.S; S; end
+	def Dir.E; E; end
+	def Dir.W; W; end
+	def Dir.dirs; return Dir::DIRS; end
+end
+
 
 # ==============================================================================
 # FUNCTIONS
