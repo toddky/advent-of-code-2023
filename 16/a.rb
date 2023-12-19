@@ -12,13 +12,13 @@ ans = 0
 beams = [[0,0,'>']]
 
 dirs = {
-	'>' => [0,1],
-	'<' => [0,-1],
-	'v' => [1,0],
-	'^' => [-1,0],
+	'^' => Dir.U,
+	'v' => Dir.D,
+	'>' => Dir.R,
+	'<' => Dir.L,
 }
 
-e = Array.new(rows) { Array.new(cols,0) }
+e = Array.newa(rows,cols,0)
 
 while not beams.empty?
 	new_beams = []
