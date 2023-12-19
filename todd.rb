@@ -1,10 +1,26 @@
 #!/usr/bin/env ruby
 # vim: ft=ruby noet ts=4 sw=0 sts
 
-# Examples:
+# ==============================================================================
+# EXAMPLES
+# ==============================================================================
 # https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 # https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
 
+
+# ==============================================================================
+# TIMER
+# ==============================================================================
+start_time =  Process.clock_gettime(Process::CLOCK_MONOTONIC)
+at_exit {
+	stop_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+	puts "Finished in #{((stop_time - start_time) * 1000).round(0)} ms"
+}
+
+
+# ==============================================================================
+# REQUIRE
+# ==============================================================================
 require 'base64'
 require 'digest'
 
@@ -46,6 +62,7 @@ class String
 	def splits(); self.split(/\s+/); end
 	def sort(); self.split('').sort.join(''); end
 	# Regex
+	def in?(string); string.include? self; end
 	def d?(); self =~ /^-?\d+$/; end
 	def numbers(); self.scan(/-?\d+/).to_i; end
 	def nums(); self.scan(/-?\d+/).to_i; end
@@ -198,7 +215,9 @@ end
 def p(string, *inputs)
 	return unless $DEBUG
 	file, line, _ = caller_locations.first.to_s.split(':')
-	from = "[#{File.basename(file)}:#{line}]".ansi('38;5;8')
+	#from = "[#{File.basename(file)}:#{line}]".ansi('38;5;8')
+	from = "[#{File.basename(file)}:".ansi('38;5;8')
+	from += line.cyan + ']'.ansi('38;5;8')
 	if inputs.size > 0 then
 		string = string.to_s.green
 	else
