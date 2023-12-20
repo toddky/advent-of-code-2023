@@ -7,37 +7,6 @@ echo ' '
 clear
 printf "\e[37;44;1m"
 printf "%0.s " $(seq 1 "$width")
-printf "\r"
-printf "[$(date +'%Y-%m-%d %T')] $script\e[0m\n"
-
-start_ms="$(ruby -e "p (Time.now.to_f*1000).to_i")"
+printf "\r[$(date +'%Y-%m-%d %T')] $script\e[0m\n"
 "./$script"
-end_ms="$(ruby -e "p (Time.now.to_f*1000).to_i")"
-echo "Finished in $((end_ms-start_ms)) ms"
-
-#result="$("./$script" 2>&1)"
-#echo "$result"
-
-exit
-
-result="$("./$script" 2>&1)"
-
-# Copy the last line
-#echo "$result" | tail -n 1 | noansi | copy-osc52
-
-echo "$result"; exit
-tail -n 1 <<<"$result" | noansi | copy-osc52
-exit
-# REVISIT: Do this other fancy stuff
-
-lines="$(wc -l <<<"$result")"
-if ((lines<height-1)); then
-	echo "$result"
-	exit
-fi
-
-half="$((height/2-2))"
-head -n "$half" <<<"$result" | cut -c "1-$width"
-printf "\e[31;1m...snip...\e[0m\n"
-tail -n "$half" <<<"$result" | cut -c "1-$width"
 
