@@ -12,7 +12,7 @@ numbers = file.readlines.map(&:numbers).map(&:abs)
 chars = file.readlines.mchars
 csv = file.readlines.map{|line| line.split(',')}
 grid = file.readlines.mchars
-rows, cols = grid.rows, grid.cols
+rows, cols = grid.rows, grid.cols unless grid.rows == 0
 ans = 0
 
 
@@ -23,5 +23,5 @@ end
 
 puts ans.s.bold.yellow
 puts 0.s.bold.green
-ans.clipboard
+ans.clipboard unless ans == 0
 
