@@ -4,9 +4,10 @@
 # ==============================================================================
 # EXAMPLES
 # ==============================================================================
-# https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
-# https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
+# https://github.com/globalreset/advent_of_code_2023/tree/main/shared
 # https://github.com/jarshwah/advent-of-code/blob/main/python/utils.py
+# https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
+# https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 
 
 # ==============================================================================
@@ -165,6 +166,9 @@ class Array
 end
 
 class Hash
+	# REVISIT:
+	# https://github.com/globalreset/advent_of_code_2023/blob/899228feda60575f56b76e0335b4c7a22885df63/shared/util.rb#L2
+
 	# New
 	def Hash.newa(); Hash.new { |hash, key| hash[key] = [] }; end
 	def Hash.newh(); Hash.new { |hash, key| hash[key] = {} }; end
