@@ -8,6 +8,8 @@
 # https://github.com/jarshwah/advent-of-code/blob/main/python/utils.py
 # https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
 # https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
+# https://github.com/sbiickert/AdventOfCode2023/blob/main/Swift/AoC%202023/AoC%202023/Libraries/AoCGrid2D.swift
+# https://github.com/globalreset/advent_of_code_2023/blob/main/shared/grid.rb
 
 
 # ==============================================================================
@@ -112,12 +114,14 @@ class Array
 	def to_s(); self.map(&:to_s); end
 	def to_h(); Hash[self]; end
 	def abs(); self.to_i.map(&:abs); end
+
 	# Each
 	def eachi(); self.each_with_index { |n,i| yield n, i }; end
 	#def chunks(size); self.each_slice(size).to_a; end
 	def chunks_of(size); self.each_slice(size).to_a; end
 	# grid.xy { |row,col| run(row,col) }
 	def each_xy(); self.eachi{|_,x| _.eachi{|_,y| yield x, y }} end
+
 	# Map
 	def add(other); self.map.with_index { |n,i| n + other[i] }; end
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
@@ -125,6 +129,10 @@ class Array
 	def mdup(); self.map(&:dup); end
 	def mjoin(c=''); self.map{|a| a.join(c)}; end
 	def mreverse(); self.map(&:reverse); end
+
+	# Select
+	def mod(div, rem); self.select.with_index{|_,i| i%div==rem}; end
+
 	# Rotate
 	def cw(); self.transpose.mreverse; end
 	def ccw(); self.mreverse.transpose; end
@@ -146,13 +154,29 @@ class Array
 		a.append(b) unless b.empty?
 		return a
 	end
+
 	# Reduce
 	def sum(); self.clean.to_i.inject(:+) || 0; end
 	def product(); self.clean.to_i.inject(:*); end
+	def prod(); self.clean.to_i.inject(:*); end
 	def max(); self.clean.to_i.reduce { |a,b| a>b ? a : b }; end
 	def min(); self.clean.to_i.reduce { |a,b| a<b ? a : b }; end
 	def lcm(); self.to_i.reduce(1,:lcm); end
 	def gcd(); self.to_i.reduce(1,:gcd); end
+
+	# Grid
+	def point(x, y)
+		return (x < 0 or x >= self.size or y < 0 or y >= self[x].size) ? nil : self[x][y]
+	end
+
+	# Point
+	def x; self[0]; end
+	def y; self[1]; end
+	def move(dir); [self[0]+dir[0], self[1]+dir[1]]; end
+	def up   ; self.move(Dir.N); end
+	def right; self.move(Dir.E); end
+	def down ; self.move(Dir.S); end
+	def left ; self.move(Dir.W); end
 
 	# Regex
 	# REVISIT: Do I need this?
