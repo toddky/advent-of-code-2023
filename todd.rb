@@ -225,17 +225,26 @@ class Dir
 		'R' => E,
 		'D' => S,
 		'L' => W,
+		'^' => N,
+		'>' => E,
+		'v' => S,
+		'<' => W,
 	}
-	def Dir.U; N; end
-	def Dir.D; S; end
-	def Dir.R; E; end
-	def Dir.L; W; end
-	def Dir.N; N; end
-	def Dir.S; S; end
-	def Dir.E; E; end
-	def Dir.W; W; end
-	def Dir.dirs; return Dir::DIRS; end
+	def Dir.U    ; N; end
+	def Dir.D    ; S; end
+	def Dir.R    ; E; end
+	def Dir.L    ; W; end
+	def Dir.up   ; N; end
+	def Dir.down ; S; end
+	def Dir.right; E; end
+	def Dir.left ; W; end
+	def Dir.N    ; N; end
+	def Dir.S    ; S; end
+	def Dir.E    ; E; end
+	def Dir.W    ; W; end
+	def Dir.dirs ; Dir::DIRS; end
 end
+D4 = [Dir.U,Dir.D,Dir.L,Dir.R]
 
 
 # ==============================================================================
