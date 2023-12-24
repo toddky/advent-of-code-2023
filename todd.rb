@@ -127,6 +127,7 @@ class Array
 	def mapi(); self.map.with_index { |n,i| yield n, i }; end
 	def mchars(); self.map(&:chars); end
 	def mdup(); self.map(&:dup); end
+	def mneg(); self.map{|n|-n}; end
 	def mjoin(c=''); self.map{|a| a.join(c)}; end
 	def mreverse(); self.map(&:reverse); end
 
@@ -177,6 +178,9 @@ class Array
 	def right; self.move(Dir.E); end
 	def down ; self.move(Dir.S); end
 	def left ; self.move(Dir.W); end
+
+	# Direction
+	def backwards(); self.map{|n|-n}; end
 
 	# Regex
 	# REVISIT: Do I need this?
