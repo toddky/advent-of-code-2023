@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Examples:
+# https://gitlab.com/davidsharick/advent-of-code-2023/-/blob/main/download-input.py?ref_type=heads
 # https://www.reddit.com/r/adventofcode/comments/a2vonl/how_to_download_inputs_with_a_script/
 
 # Get session:
@@ -47,5 +49,5 @@ echo "RETVAL: $?" 1>&2
 exit 0
 
 # REVISIT: If input.txt contains this, delete it:
-# Please don't repeatedly request this endpoint before it unlocks! The calendar countdown is synchronized with the server time; the link will be enabled on the calendar the instant this puzzle becomes available.
+too_early="Please don't repeatedly request this endpoint before it unlocks! The calendar countdown is synchronized with the server time; the link will be enabled on the calendar the instant this puzzle becomes available."
 
