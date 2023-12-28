@@ -9,6 +9,9 @@ Tips
     - Don't validate inputs.
     - [Custom CSS](https://gist.github.com/mcpower/e224e66699a3bfe774e9eee2fe43bb8a) to make website more readable.
     - [User script to copy code blocks.](https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661?permalink_comment_id=4392058#gistcomment-4392058)
+- Study previous years.
+    - [400 Stars: A Categorization and Mega-Guide](https://www.reddit.com/r/adventofcode/comments/17f80kk/400_stars_a_categorization_and_megaguide/) (reddit post)
+
 
 Examples
 --------------------------------------------------------------------------------
@@ -29,6 +32,13 @@ Lessons
     - Subtracting an array from itself shifted over one: `n[1..-1].mapi{|x,i| x-n[i]}`
 - [Encode your logic in a hash](https://github.com/Evgenus/advent-of-code/blob/0f53db49d485d2a9884ac3fee2d86d8e88dbdda8/2023/16/main.py#L12) instead of doing a bunch of if statements.
 - Or you can [write your own language](https://www.uiua.org/pad?src=0_7_0__JCBPLi4uLiMuLi4uCiQgTy5PTyMuLi4uIwokIC4uLi4uIyMuLi4KJCBPTy4jTy4uLi5PCiQgLk8uLi4uLk8jLgokIE8uIy4uTy4jLiMKJCAuLk8uLiNPLi5PCiQgLi4uLi4uLk8uLgokICMuLi4uIyMjLi4KJCAjT08uLiMuLi4uCgpSb2xsIOKGkCDiiaHijZziipzilqHiiLXijZzCsOKWoSjiio_ijZYuKeKJoDIuCkxvYWQg4oaQIC8r4pmt4omhKMOXKzHih6Hip7suPTApCuKKnOKImOKJoDMu4oqbCjpMb2FkIFJvbGwu4omh4oeM4o2JICMgcGFydCAxCgrijaLiioMo4o2lKOKJoeKHjOKNiVJvbGwpNHziioI64pahKSjCrOKIiuKWoSk6W10KK-KXv-KIqSgtOiniioMo4ouF4qe7fCwxZTku4oqX4pahfOKLheKImCkK4oqQTG9hZOKKjyAjIHBhcnQgMgo=)!
+- [What reddit learned from 2023](https://www.reddit.com/r/adventofcode/comments/18qntwl/what_have_you_learned_this_year/)
+    - Use complex numbers and a hashmap instead of a 2D array.
+    - Pick's theorem and Shoelace formula.
+    - [Z3](https://microsoft.github.io/z3guide/programming/Z3%20Python%20-%20Readonly/Introduction/)
+    - Dijkstra's algorithm
+    - Karger's algorithm
+    - Memoization
 
 
 Top Finishers' GitHub
