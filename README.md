@@ -18,6 +18,8 @@ Examples
 - Start script
     - [antooro (Python)](https://github.com/antooro/advent-of-code-2019/blob/0f730756c2ee010ba062bf58879bae503ac41e7c/startDay.py)
     - [bcc32 (Bash)](https://github.com/bcc32/advent-of-code/blob/main/start.sh)
+    - [mebeim (Python)](https://github.com/mebeim/aoc/blob/d41d8d16c362706cc0c83281f70637fd31771b9d/utils/advent.py)
+    - [morgoth1145 (Python)](https://github.com/morgoth1145/advent-of-code/blob/f3f6c1160948edc476b3f7f7abf7c0d2da324466/lib/aoc.py)
 - [Using complex numbers as coordinates.](https://github.com/rabuf/advent-of-code/blob/a21f1b84785f198c7c28975fdb7f8a184d374019/python/aoc2023/day18.py)
 - 2023 day 1 part 1 in [RISC-V assembly](https://gitlab.com/paulmkennedy/aoc/-/blob/master/2023/day01/risc-v/part1.S)
 - Templates
