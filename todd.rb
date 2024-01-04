@@ -5,11 +5,13 @@
 # EXAMPLES
 # ==============================================================================
 # https://github.com/globalreset/advent_of_code_2023/tree/main/shared
-# https://github.com/jarshwah/advent-of-code/blob/main/python/utils.py
-# https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
-# https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 # https://github.com/sbiickert/AdventOfCode2023/blob/main/Swift/AoC%202023/AoC%202023/Libraries/AoCGrid2D.swift
 # https://github.com/globalreset/advent_of_code_2023/blob/main/shared/grid.rb
+# Python:
+# - https://github.com/mebeim/aoc/tree/master/utils
+# - https://github.com/jarshwah/advent-of-code/blob/main/python/utils.py
+# - https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
+# - https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
 
 
 # ==============================================================================
