@@ -4,14 +4,16 @@
 # ==============================================================================
 # EXAMPLES
 # ==============================================================================
-# https://github.com/globalreset/advent_of_code_2023/tree/main/shared
-# https://github.com/sbiickert/AdventOfCode2023/blob/main/Swift/AoC%202023/AoC%202023/Libraries/AoCGrid2D.swift
-# https://github.com/globalreset/advent_of_code_2023/blob/main/shared/grid.rb
+# Ruby:
+# - https://github.com/globalreset/advent_of_code_2023/tree/main/shared
+# - https://github.com/globalreset/advent_of_code_2023/blob/main/shared/grid.rb
 # Python:
 # - https://github.com/mebeim/aoc/tree/master/utils
 # - https://github.com/jarshwah/advent-of-code/blob/main/python/utils.py
 # - https://github.com/nthistle/advent-of-code/blob/7950850b77da77c1c2a4ca15c10f793c60e7ec73/2022/day25/aoc_tools.py
 # - https://github.com/mcpower/adventofcode/blob/15ae109bc882ca688665f86e4ca2ba1770495bb4/utils.py
+# Other:
+# - https://github.com/sbiickert/AdventOfCode2023/blob/main/Swift/AoC%202023/AoC%202023/Libraries/AoCGrid2D.swift
 
 
 # ==============================================================================
@@ -288,5 +290,18 @@ def memoize(name, *args)
 		return @cache[name][*args] if @cache[name][*args]
 		@cache[name][*args] ||= method(orig_name).call *args
 	end
+end
+
+# Cantor pairing function
+# https://en.wikipedia.org/wiki/Pairing_function#Cantor_pairing_function
+def pair(x, y)
+	return (x + y) * (x + y + 1) / 2 + y
+end
+def unpair(z)
+	w = ((Math.sqrt(8 * z + 1) - 1) / 2).floor
+	t = (w**2 + w) / 2
+	y = z - t
+	x = w - y
+	return [x, y]
 end
 
